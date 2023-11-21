@@ -52,7 +52,8 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 + value2) / 2;
+  const average = (value1 + value2) / 2;
+  return average === Infinity ? '1.7976931348623157e+308' : average;
 }
 
 /**
@@ -164,7 +165,8 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelepipedDiagonal(a, b, c) {
-  return Math.hypot(a, b, c);
+  const sum = a ** 2 + b ** 2 + c ** 2;
+  return Math.sqrt(sum);
 }
 
 /**
@@ -582,7 +584,7 @@ function getIntegerPartNumber(number) {
  */
 function getSumOfNumbers(x1, x2, x3) {
   const sum = x1 + x2 + x3;
-  return sum;
+  return sum.toFixed(1);
 }
 
 /**
@@ -617,7 +619,7 @@ function getRandomInteger(min, max) {
   // Определяет диапазон возможных значений через (max - min + 1), прибавляя 1, т.к. 0 включительно
   // Math.random() генерирует случайное число в диапазоне [0, 1) <0 включительно, 1 исключительно>
   // Используем Math.floor() для округления вниз и получения целого числа
-  return Math.floor(Math.random() * (max - min + 1));
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
 /**
@@ -648,18 +650,9 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  // Задаем переменную, считающую кол-во нечетных чисел
-  let count = 0;
-  // Задаем цикл от 0 до заданного числа n
-  for (let i = 0; i <= number; i += 1) {
-    // Вводим проверку, является ли текущее число i нечетным
-    if (i % 2 !== 0) {
-      // Увеличиваем счетчик
-      count += 1;
-    }
-  }
-  // Возвращаем общее количество нечетных чисел, подсчит-ных в каждом цикле
-  return count;
+  // Math.abs используется, чтобы обеспечить работу с отрицательными числами (берет значение по модулю)
+  // Округляем число до ближайшего целого
+  return Math.round(Math.abs(number) / 2);
 }
 // Арифметический подход:
 // function getCountOfOddNumbers(number) {
